@@ -1,5 +1,5 @@
 .login_container {
-    -fx-background-color: #EEEEEEE;
+    -fx-background-color: #EEEEEE;
 }
 
 /*Logo Container Styles*/
@@ -37,6 +37,11 @@
 }
 
 /* Login form styles */
+
+#choice-prompt-text {
+    -fx-font-weight: 400;
+}
+
 .login_form_container {
     -fx-spacing: 15;
     -fx-alignment: top-left;
@@ -51,6 +56,22 @@
     -fx-background-color: #FFFFFF;
     -fx-pref-height: 35;
     -fx-font-size: 1.2em;
+}
+
+.login_form_container Button {
+    -fx-background-color: #132A13;
+    -fx-text-fill: #FFFFFF;
+    -fx-pref-width: 350;
+    -fx-pref-height: 30;
+    -fx-font-size: 1.2em;
+}
+
+.login_form_container Button:hover {
+    -fx-cursor: hand;
+}
+
+.error_lbl {
+    -fx-text-fill: #FF0000;
 }
 
 
