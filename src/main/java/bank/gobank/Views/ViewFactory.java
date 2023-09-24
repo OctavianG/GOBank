@@ -1,6 +1,8 @@
 package bank.gobank.Views;
 
 import bank.gobank.Controllers.Client.ClientController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -9,9 +11,19 @@ import javafx.stage.Stage;
 // central class that controls the UI
 public class ViewFactory {
     // Client Views
-    private AnchorPane dashboardView;
 
-    public ViewFactory() {}
+    // flag for managing Client view
+    private final StringProperty clientSelectedMenuItem;
+    private AnchorPane dashboardView;
+    private AnchorPane transactionsView;
+
+    public ViewFactory() {
+        this.clientSelectedMenuItem = new SimpleStringProperty("");
+    }
+
+    public StringProperty getClientSelectedMenuItem() {
+        return clientSelectedMenuItem;
+    }
 
     public AnchorPane getDashboardView() {
         // if it is not loaded already load it, if it was loaded cache it
@@ -24,6 +36,18 @@ public class ViewFactory {
         }
 
         return dashboardView;
+    }
+
+    public AnchorPane getTransactionsView() {
+        if (transactionsView == null) {
+            try {
+                transactionsView = new FXMLLoader(getClass().getResource("/Fxml/Client/Transactions.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return transactionsView;
     }
 
     public void showLoginWindow() {
