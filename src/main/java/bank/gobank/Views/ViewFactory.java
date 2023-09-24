@@ -53,4 +53,9 @@ public class ViewFactory {
         stage.setTitle("GO Bank");
         stage.show();
     }
+
+    public void closeStage(Stage stage) {
+        stage.close();
+
+    }
 }
