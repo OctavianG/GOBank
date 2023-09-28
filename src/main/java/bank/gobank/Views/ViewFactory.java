@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 // central class that controls the UI
 public class ViewFactory {
     // Client Views
-   private AccountType loginAccountType;
+    private AccountType loginAccountType;
     private final ObjectProperty<ClientMenuOptions> clientSelectedMenuItem;
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
@@ -22,6 +22,7 @@ public class ViewFactory {
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
     private AnchorPane createClientView;
     private AnchorPane clientsView;
+    private AnchorPane depositView;
 
 
     public ViewFactory() {
@@ -120,36 +121,48 @@ public class ViewFactory {
         return clientsView;
     }
 
-    public void showAdminWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
-        AdminController controller = new AdminController();
-        loader.setController(controller);
-        createStage(loader);
-    }
-
-    public void showLoginWindow() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
-        createStage(loader);
-    }
-
-
-    private void createStage(FXMLLoader loader) {
-        Scene scene = null;
-
-        try {
-            scene = new Scene(loader.load());
-        } catch (Exception e) {
-            e.printStackTrace();
+    public AnchorPane getDepositView() {
+        if (depositView == null) {
+            try {
+                depositView = new FXMLLoader(getClass().getResource("/Fxml/Admin/Deposit.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("GO Bank");
-        stage.show();
+        return depositView;
     }
 
-    public void closeStage(Stage stage) {
-        stage.close();
+        public void showAdminWindow () {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
+            AdminController controller = new AdminController();
+            loader.setController(controller);
+            createStage(loader);
+        }
 
+        public void showLoginWindow () {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
+            createStage(loader);
+        }
+
+
+        private void createStage (FXMLLoader loader){
+            Scene scene = null;
+
+            try {
+                scene = new Scene(loader.load());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("GO Bank");
+            stage.show();
+        }
+
+        public void closeStage (Stage stage){
+            stage.close();
+
+        }
     }
-}
