@@ -1,13 +1,11 @@
 package bank.gobank.Models;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseDriver {
     private Connection conn;
 
-    private DatabaseDriver() {
+    public DatabaseDriver() {
         try {
             this.conn = DriverManager.getConnection("jdbc:sqlite:gobank.db");
         } catch (SQLException e) {
@@ -16,6 +14,20 @@ public class DatabaseDriver {
     }
 
     /* Client Section */
+
+    public ResultSet getClientData(String pAddress, String password) {
+        Statement statement;
+        ResultSet resultSet = null;
+
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress = ' " + pAddress + " ' AND Password='" + password + "' ;");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultSet;
+    }
 
     /* Admin Section */
 
