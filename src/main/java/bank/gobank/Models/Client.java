@@ -19,7 +19,7 @@ public class Client {
     public Client(String fName, String lName, String pAddress, Account cAccount,
                   Account sAccount, LocalDate date) {
 
-        this.firstName = new SimpleStringProperty(this, "FristName", fName);
+        this.firstName = new SimpleStringProperty(this, "FirstName", fName);
         this.lastName = new SimpleStringProperty(this, "LastName", lName);
         this.payeeAddress = new SimpleStringProperty(this, "Payee Address", pAddress);
         this.checkingAccount = new SimpleObjectProperty<>(this, "Checking Account", cAccount);
@@ -37,7 +37,7 @@ public class Client {
         return this.lastName;
     }
 
-    public StringProperty pAddress() {
+    public StringProperty pAddressProperty() {
 
         return this.payeeAddress;
     }

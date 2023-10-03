@@ -21,7 +21,7 @@ public class DatabaseDriver {
 
         try {
             statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress = ' " + pAddress + " ' AND Password='" + password + "' ;");
+            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"' AND Password='"+password+"';");
         } catch (Exception e) {
             e.printStackTrace();
         }
