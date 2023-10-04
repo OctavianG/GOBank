@@ -28,6 +28,6 @@
       <Text layoutX="10.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account Balance:" />
       <TextField fx:id="sv_amount_fld" layoutX="10.0" layoutY="244.0" prefHeight="26.0" prefWidth="433.0" />
       <Button fx:id="create_client_btn" mnemonicParsing="false" text="Create new Client" />
-      <Label fx:id="error_lbl" layoutX="10.0" layoutY="174.0" styleClass="error_lbl" text="Error:" />
+      <Label fx:id="error_lbl" layoutX="10.0" layoutY="174.0" styleClass="error_lbl" />
    </VBox>
 </AnchorPane>

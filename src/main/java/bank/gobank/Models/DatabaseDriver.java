@@ -21,7 +21,7 @@ public class DatabaseDriver {
 
         try {
             statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"' AND Password='"+password+"';");
+            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='" + pAddress + "' AND Password='" + password + "';");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,6 +30,22 @@ public class DatabaseDriver {
     }
 
     /* Admin Section */
+    public ResultSet getAdminData(String username, String password) {
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM Admins WHERE Username='" + username + "'" +
+                    " AND Password='" + password + "';");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-    /* Utility Methods */
+        return resultSet;
+    }
 }
+
+
+
+/* Utility Methods */
+

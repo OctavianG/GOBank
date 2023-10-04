@@ -1,5 +1,6 @@
 package bank.gobank.Controllers;
 
+import bank.gobank.Models.Account;
 import bank.gobank.Models.Model;
 import bank.gobank.Views.AccountType;
 import javafx.collections.FXCollections;
@@ -27,7 +28,7 @@ public class LoginController implements Initializable {
         acc_selector.setItems(FXCollections.observableArrayList(AccountType.CLIENT, AccountType.ADMIN));
         acc_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
         acc_selector.valueProperty().addListener
-                (observable -> Model.getInstance().getViewFactory().setLoginAccountType(acc_selector.getValue()));
+                (observable -> setAcc_selector());
         login_btn.setOnAction(event -> onLogin());
     }
 
@@ -47,7 +48,27 @@ public class LoginController implements Initializable {
                 error_lbl.setText("No Such Login Credentials");
             }
         } else {
-            Model.getInstance().getViewFactory().showAdminWindow();
+            // Evaluate Admin Login Credentials
+            Model.getInstance().evaluateAdminCred(payee_address_field.getText(), password_fld.getText());
+            if (Model.getInstance().getAdminLoginSuccessFlag()) {
+                Model.getInstance().getViewFactory().showAdminWindow();
+                // Close the Login Stage
+                Model.getInstance().getViewFactory().closeStage(stage);
+            } else {
+                payee_address_field.setText("");
+                password_fld.setText("");
+                error_lbl.setText("No Such Login Credentials");
+            }
+        }
+    }
+
+    private void setAcc_selector() {
+        Model.getInstance().getViewFactory().setLoginAccountType(acc_selector.getValue());
+        // Change Label accordingly
+        if (acc_selector.getValue() == AccountType.ADMIN) {
+            payee_address_lbl.setText("Username:");
+        } else {
+            payee_address_lbl.setText("Payee Address:");
         }
     }
 }
