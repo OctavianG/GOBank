@@ -4,6 +4,7 @@ import bank.gobank.Models.Model;
 import bank.gobank.Views.AdminMenuOptions;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,9 +21,10 @@ public class AdminMenuController implements Initializable {
     }
 
     private void addListeners() {
-        create_client_btn.setOnAction(actionEvent -> onCreateClient());
-        clients_btn.setOnAction(actionEvent -> onClients());
-        deposit_btn.setOnAction(actionEvent -> onDeposit());
+        create_client_btn.setOnAction(event -> onCreateClient());
+        clients_btn.setOnAction(event -> onClients());
+        deposit_btn.setOnAction(event -> onDeposit());
+        logout_btn.setOnAction(event -> onLogout());
     }
 
     private void onCreateClient() {
@@ -35,5 +37,16 @@ public class AdminMenuController implements Initializable {
 
     private void onDeposit() {
         Model.getInstance().getViewFactory().getAdminSelectedMenuItem().set(AdminMenuOptions.DEPOSIT);
+    }
+
+    private void onLogout() {
+        // Get Stage
+        Stage stage = (Stage) clients_btn.getScene().getWindow();
+        // Close the Admin window
+        Model.getInstance().getViewFactory().closeStage(stage);
+        // Show Login Window
+        Model.getInstance().getViewFactory().showLoginWindow();
+        // Set Admin Login SuccessFlag to false
+        Model.getInstance().setAdminLoginSuccessFlag(false);
     }
 }
