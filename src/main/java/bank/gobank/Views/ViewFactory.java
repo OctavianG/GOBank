@@ -134,38 +134,38 @@ public class ViewFactory {
         return depositView;
     }
 
-        public void showAdminWindow () {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
-            AdminController controller = new AdminController();
-            loader.setController(controller);
-            createStage(loader);
-        }
-
-        public void showLoginWindow () {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
-            createStage(loader);
-        }
-
-
-        private void createStage (FXMLLoader loader){
-            Scene scene = null;
-
-            try {
-                scene = new Scene(loader.load());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/icon.png"))));
-            stage.setResizable(false);
-            stage.setTitle("GO Bank");
-            stage.show();
-        }
-
-        public void closeStage (Stage stage){
-            stage.close();
-
-        }
+    public void showAdminWindow () {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Admin/Admin.fxml"));
+        AdminController controller = new AdminController();
+        loader.setController(controller);
+        createStage(loader);
     }
+
+    public void showLoginWindow () {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
+        createStage(loader);
+    }
+
+
+    private void createStage (FXMLLoader loader){
+        Scene scene = null;
+
+        try {
+            scene = new Scene(loader.load());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/icon.png"))));
+        stage.setResizable(false);
+        stage.setTitle("GO Bank");
+        stage.show();
+    }
+
+    public void closeStage (Stage stage){
+        stage.close();
+
+    }
+}

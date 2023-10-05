@@ -10,12 +10,13 @@ public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
     private final DatabaseDriver databaseDriver;
+
     // Client Data Section
     private final Client client;
     private boolean clientLoginSuccessFlag;
 
     // Admin Data Section
-    private boolean adminLoginSuccessFlag;
+    private boolean adminLoginSuccessFlag = false;
 
     // singleton
     private Model() {
@@ -46,6 +47,8 @@ public class Model {
 
         return databaseDriver;
     }
+
+
 
     /*
     Client Method Section
@@ -109,5 +112,9 @@ public class Model {
             e.printStackTrace();
         }
     }
+
+    /* Utility Methods */
+
+
 }
 

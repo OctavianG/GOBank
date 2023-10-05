@@ -27,8 +27,7 @@ public class LoginController implements Initializable {
         //for ChoiceBox login
         acc_selector.setItems(FXCollections.observableArrayList(AccountType.CLIENT, AccountType.ADMIN));
         acc_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
-        acc_selector.valueProperty().addListener
-                (observable -> setAcc_selector());
+        acc_selector.valueProperty().addListener(observable -> setAcc_selector());
         login_btn.setOnAction(event -> onLogin());
     }
 
@@ -36,12 +35,12 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) error_lbl.getScene().getWindow();
 
         if (Model.getInstance().getViewFactory().getLoginAccountType() == AccountType.CLIENT) {
-           // Evaluate Login Credentials
+            // Evaluate Login Credentials
             Model.getInstance().evaluateClientCred(payee_address_field.getText(), password_fld.getText());
             if (Model.getInstance().getClientLoginSuccessFlag()) {
                 Model.getInstance().getViewFactory().showClientWindow();
                 // Close the Login stage
-               Model.getInstance().getViewFactory().closeStage(stage);
+                Model.getInstance().getViewFactory().closeStage(stage);
             } else {
                 payee_address_field.setText("");
                 password_fld.setText("");
