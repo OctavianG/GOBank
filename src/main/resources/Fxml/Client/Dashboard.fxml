@@ -72,7 +72,7 @@
          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="acc_summary_container">
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Income"/>
-         <Label fx:id="income_lbl" styleClass="income_ammount" text="+ $ 40000.00"/>
+         <Label fx:id="income_lbl" styleClass="income_amount" text="+ $ 40000.00"/>
          <Line endX="160.0"/>
          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Expenses"/>
          <Label fx:id="expense_lbl" styleClass="expense_amount" text="- $ 1500.00"/>
