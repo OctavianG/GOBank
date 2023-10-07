@@ -1,13 +1,10 @@
 package bank.gobank.Models;
 
-import bank.gobank.Views.AccountType;
 import bank.gobank.Views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 
 public class Model {
@@ -191,7 +188,7 @@ public class Model {
 
     public ObservableList<Client> searchClient(String pAddress) {
         ObservableList<Client> searchResults = FXCollections.observableArrayList();
-        ResultSet resultSet = databaseDriver.serarchClient(pAddress);
+        ResultSet resultSet = databaseDriver.searchClient(pAddress);
         try {
             CheckingAccount checkingAccount = getCheckingAccount(pAddress);
             SavingsAccount savingsAccount = getSavingsAccount(pAddress);
