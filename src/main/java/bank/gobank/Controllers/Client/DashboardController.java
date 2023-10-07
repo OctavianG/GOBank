@@ -2,6 +2,7 @@ package bank.gobank.Controllers.Client;
 
 import bank.gobank.Models.Model;
 import bank.gobank.Models.Transaction;
+import bank.gobank.Views.TransactionCellFactory;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -29,6 +30,9 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        bindData();
+       initLatestTransactionsList();
+       transaction_listview.setItems(Model.getInstance().getLatestTransactions());
+       transaction_listview.setCellFactory(e->new TransactionCellFactory());
     }
 
     private void bindData() {
@@ -36,7 +40,16 @@ public class DashboardController implements Initializable {
         login_date.setText("Today, " + LocalDate.now());
         checking_bal.textProperty().bind(Model.getInstance().getClient().checkingAccountProperty().get().balanceProperty().asString());
         checking_acc_num.textProperty().bind(Model.getInstance().getClient().checkingAccountProperty().get().accountNumberProperty());
-       savings_bal.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().balanceProperty().asString());
-       // savings_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().accountNumberProperty());
+        savings_bal.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().balanceProperty().asString());
+        savings_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().get().accountNumberProperty());
+    }
+
+    private void initLatestTransactionsList() {
+        if (Model.getInstance().getLatestTransactions().isEmpty()) {
+            Model.getInstance().setLatestTransactions();
+        }
+
+
+
     }
 }

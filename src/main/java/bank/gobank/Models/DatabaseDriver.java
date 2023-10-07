@@ -14,7 +14,11 @@ public class DatabaseDriver {
         }
     }
 
-    /* Client Section */
+    /*
+
+    Client Section
+
+    */
 
     public ResultSet getClientData(String pAddress, String password) {
         Statement statement;
@@ -30,7 +34,26 @@ public class DatabaseDriver {
         return resultSet;
     }
 
-    /* Admin Section */
+    public ResultSet getTransactions(String pAddress, int limit) {
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM Transactions WHERE Sender='"+pAddress+"' OR Receiver='"+pAddress+"' LIMIT "+limit+";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultSet;
+    }
+
+    /*
+
+    Admin Section
+
+
+     */
+
     public ResultSet getAdminData(String username, String password) {
         Statement statement;
         ResultSet resultSet = null;
@@ -156,7 +179,7 @@ public class DatabaseDriver {
         ResultSet resultSet = null;
         try {
             statement = this.conn.createStatement();
-            resultSet = statement.executeQuery("SELECT  * FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
+            resultSet = statement.executeQuery("SELECT * FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
         } catch (SQLException e) {
             e.printStackTrace();
         }
