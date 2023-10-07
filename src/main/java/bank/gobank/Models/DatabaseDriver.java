@@ -169,7 +169,6 @@ public class DatabaseDriver {
         try {
             statement = this.conn.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM  Clients;");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
