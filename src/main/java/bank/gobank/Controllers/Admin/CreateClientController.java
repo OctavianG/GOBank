@@ -1,6 +1,7 @@
 package bank.gobank.Controllers.Admin;
 
 import bank.gobank.Models.Model;
+import bank.gobank.Views.ClientCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -69,10 +70,13 @@ public class CreateClientController implements Initializable {
         String lName = lName_fld.getText();
         String password = password_fld.getText();
         Model.getInstance().getDatabaseDriver().createClient(fName, lName, payeeAddress, password, LocalDate.now());
+        Model.getInstance().removeClients();
+        Model.getInstance().setClients();
+
+
         error_lbl.setStyle("-fx-text-fill: blue; -fx-font-size: 1.3em; -fx-font-weight: bold");
         error_lbl.setText("Client created successfully!");
         emptyFields();
-
     }
 
     private void createAccount(String accountType) {

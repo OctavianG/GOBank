@@ -40,8 +40,6 @@ public class ClientCellController implements Initializable {
         Model.getInstance().getDatabaseDriver().deleteClient(this.client.pAddressProperty().getValue());
         Model.getInstance().removeClients();
         Model.getInstance().setClients();
-        ClientsController.getInstance().clients_listview.setItems(Model.getInstance().getClients());
-        ClientsController.getInstance().clients_listview.setCellFactory(e -> new ClientCellFactory());
         }
     }
 
