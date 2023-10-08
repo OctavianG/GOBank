@@ -1,6 +1,8 @@
 package bank.gobank.Controllers.Admin;
 
 import bank.gobank.Models.Client;
+import bank.gobank.Models.Model;
+import bank.gobank.Views.ClientCellFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +18,6 @@ public class ClientCellController implements Initializable {
     public Label sv_acc_lbl;
     public Label date_lbl;
     public Button delete_btn;
-
     private final Client client;
 
     public ClientCellController(Client client) {
@@ -31,5 +32,16 @@ public class ClientCellController implements Initializable {
         ch_acc_lbl.textProperty().bind(client.checkingAccountProperty().asString());
         sv_acc_lbl.textProperty().bind(client.savingsAccountProperty().asString());
         date_lbl.textProperty().bind(client.dateProperty().asString());
+        delete_btn.setOnAction(event -> onDelete());
     }
-}
+
+
+    private void onDelete() {
+        Model.getInstance().getDatabaseDriver().deleteClient(this.client.pAddressProperty().getValue());
+        Model.getInstance().removeClients();
+        Model.getInstance().setClients();
+        ClientsController.getInstance().clients_listview.setItems(Model.getInstance().getClients());
+        ClientsController.getInstance().clients_listview.setCellFactory(e -> new ClientCellFactory());
+        }
+    }
+

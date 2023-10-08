@@ -55,8 +55,6 @@ public class Model {
         return databaseDriver;
     }
 
-
-
     /*
     Client Method Section
     */
@@ -139,7 +137,6 @@ public class Model {
 
     */
 
-
     public boolean getAdminLoginSuccessFlag() {
 
         return this.adminLoginSuccessFlag;
@@ -184,6 +181,10 @@ public class Model {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeClients() {
+        clients.clear();
     }
 
     public ObservableList<Client> searchClient(String pAddress) {

@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 public class ClientsController implements Initializable {
     public ListView<Client> clients_listview;
+    private static ClientsController clientsController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -19,9 +20,18 @@ public class ClientsController implements Initializable {
         clients_listview.setCellFactory(e -> new ClientCellFactory());
     }
 
+    public static synchronized ClientsController getInstance() {
+        if (clientsController == null) {
+            clientsController = new ClientsController();
+        }
+
+        return clientsController;
+    }
+
     private void initClientsList() {
         if (Model.getInstance().getClients().isEmpty()) {
             Model.getInstance().setClients();
         }
     }
 }
+

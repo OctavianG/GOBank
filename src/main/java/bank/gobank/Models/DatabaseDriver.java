@@ -245,5 +245,18 @@ public class DatabaseDriver {
 
         return resultSet;
     }
+
+    public void deleteClient(String pAddress) {
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            statement = this.conn.createStatement();
+            statement.executeUpdate("DELETE FROM Clients WHERE PayeeAddress='"+pAddress+"';");
+            statement.executeUpdate("DELETE FROM CheckingAccounts WHERE Owner='"+pAddress+"';");
+            statement.executeUpdate("DELETE FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
