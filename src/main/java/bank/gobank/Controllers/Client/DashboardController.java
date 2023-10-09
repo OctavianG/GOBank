@@ -4,6 +4,7 @@ import bank.gobank.Models.Model;
 import bank.gobank.Models.Transaction;
 import bank.gobank.Views.TransactionCellFactory;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
@@ -73,6 +74,10 @@ public class DashboardController implements Initializable {
         Model.getInstance().getClient().savingsAccountProperty().get().setBalance(Model.getInstance().getDatabaseDriver().getSavingsAccountBalance(sender));
         //  Record new transaction
         Model.getInstance().getDatabaseDriver().newTransaction(sender, receiver, amount, message);
+        Model.getInstance().removeTransactions();
+        Model.getInstance().setAllTransactions();
+        Model.getInstance().setLatestTransactions();
+
         // Clear fields
         payee_fld.setText("");
         amount_fld.setText("");

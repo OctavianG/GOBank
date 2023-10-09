@@ -6,6 +6,9 @@ import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Model {
     private static Model model;
@@ -98,9 +101,10 @@ public class Model {
         }
     }
 
-    private void prepareTransactions(ObservableList<Transaction> trasactions, int limit) {
-        ResultSet resultSet = databaseDriver.getTransactions(this.client.pAddressProperty().get(), limit);
-        try{
+    private void prepareTransactions(ObservableList<Transaction> transactions, int limit) {
+        ResultSet resultSet = databaseDriver.getTransactions(this.client.pAddressProperty().get(), -1);
+        List<Transaction> transactionList = new ArrayList<>();
+        try {
             while (resultSet.next()) {
                 String sender = resultSet.getString("Sender");
                 String receiver = resultSet.getString("Receiver");
@@ -108,15 +112,32 @@ public class Model {
                 String[] dateParts = resultSet.getString("Date").split("-");
                 LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
                 String message = resultSet.getString("Message");
-                trasactions.add(new Transaction(sender, receiver, amount, date, message));
+                Transaction transaction = new Transaction(sender, receiver, amount, date, message);
+                transactionList.add(transaction); // Add to the temporary list
+            }
+
+            // latest transactions
+            if (limit != -1) {
+                Collections.reverse(transactionList);
+                transactions.addAll(transactionList.subList(0, limit));
+                // all transactions
+            } else {
+                transactions.addAll(transactionList);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+
     public void setLatestTransactions() {
-        prepareTransactions(this.latestTransactions, 4);
+
+        prepareTransactions(this.latestTransactions, 5);
+    }
+
+    public void removeTransactions() {
+        latestTransactions.clear();
+        allTransactions.clear();
     }
 
     public ObservableList<Transaction> getLatestTransactions() {
@@ -198,7 +219,7 @@ public class Model {
             String[] dateParts = resultSet.getString("Date").split("-");
             LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
             searchResults.add(new Client(fName, lName, pAddress, checkingAccount, savingsAccount, date));
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -218,7 +239,7 @@ public class Model {
         try {
             String num = resultSet.getString("AccountNumber");
             int tlimt = (int) resultSet.getDouble("TransactionLimit");
-            double balance    = resultSet.getDouble("Balance");
+            double balance = resultSet.getDouble("Balance");
             account = new CheckingAccount(pAddress, num, balance, tlimt);
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,8 +254,8 @@ public class Model {
 
         try {
             String num = resultSet.getString("AccountNumber");
-            double wLimit =  resultSet.getDouble("WithdrawalLimit");
-            double balance    = resultSet.getDouble("Balance");
+            double wLimit = resultSet.getDouble("WithdrawalLimit");
+            double balance = resultSet.getDouble("Balance");
             account = new SavingsAccount(pAddress, num, balance, wLimit);
         } catch (Exception e) {
             e.printStackTrace();
@@ -242,7 +263,6 @@ public class Model {
 
         return account;
     }
-
 
 
 }

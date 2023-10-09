@@ -1,5 +1,6 @@
 package bank.gobank.Controllers.Client;
 
+import bank.gobank.Controllers.Admin.ClientsController;
 import bank.gobank.Models.Model;
 import bank.gobank.Models.Transaction;
 import bank.gobank.Views.TransactionCellFactory;
@@ -11,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class TransactionsController implements Initializable {
     public ListView<Transaction> transactions_listview;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -25,3 +27,4 @@ public class TransactionsController implements Initializable {
         }
     }
 }
+
