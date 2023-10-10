@@ -10,6 +10,7 @@ public class CheckingAccount extends Account {
     private final IntegerProperty transactionLimit;
 
 
+
     public CheckingAccount(String owner, String accountNumber, double balance, int tLimit) {
         super(owner, accountNumber, balance);
         this.transactionLimit = new SimpleIntegerProperty(this, "Transaction Limit", tLimit);
