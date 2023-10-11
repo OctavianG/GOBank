@@ -91,6 +91,50 @@ public class DatabaseDriver {
         }
     }
 
+    public void updateBalanceChecking (String pAddress, double amount, String operation) {
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM CheckingAccounts WHERE Owner='"+pAddress+"';");
+            double newBalance = 0;
+            if (operation.equals("ADD")) {
+                newBalance = resultSet.getDouble("Balance") + amount;
+                statement.executeUpdate("UPDATE CheckingAccounts SET Balance="+newBalance+" WHERE Owner='"+pAddress+"';");
+            } else {
+                if (resultSet.getDouble("Balance") >= amount) {
+                    newBalance = resultSet.getDouble("Balance") - amount;
+                    statement.executeUpdate("UPDATE CheckingAccounts SET Balance="+newBalance+" WHERE Owner='"+pAddress+"';");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateBalanceSavings (String pAddress, double amount, String operation) {
+        Statement statement;
+        ResultSet resultSet;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM SavingsAccounts WHERE Owner='"+pAddress+"';");
+            double newBalance = 0;
+            if (operation.equals("ADD")) {
+                newBalance = resultSet.getDouble("Balance") + amount;
+                statement.executeUpdate("UPDATE SavingsAccounts SET Balance="+newBalance+" WHERE Owner='"+pAddress+"';");
+            } else {
+                if (resultSet.getDouble("Balance") >= amount) {
+                    newBalance = resultSet.getDouble("Balance") - amount;
+                    statement.executeUpdate("UPDATE SavingsAccounts SET Balance="+newBalance+" WHERE Owner='"+pAddress+"';");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Creates and records new transaction
     public void newTransaction(String sender, String receiver, double amount, String message) {
         Statement statement;
@@ -181,14 +225,26 @@ public class DatabaseDriver {
 
 
     public void depositSavings(String pAddress, double amount) {
-        Statement statement;
-        try {
-            statement = this.conn.createStatement();
-            statement.executeUpdate("UPDATE  SavingsAccounts SET Balance="+amount+" WHERE Owner='"+pAddress+"';");
-        }catch (SQLException e) {
+        try (PreparedStatement preparedStatement = this.conn.prepareStatement("UPDATE SavingsAccounts SET Balance =  ? WHERE Owner = ?")) {
+            preparedStatement.setDouble(1, amount);
+            preparedStatement.setString(2, pAddress);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    public void depositChecking(String pAddress, double amount) {
+        try (PreparedStatement preparedStatement = this.conn.prepareStatement("UPDATE CheckingAccounts SET Balance =  ? WHERE Owner = ?")) {
+            preparedStatement.setDouble(1, amount);
+            preparedStatement.setString(2, pAddress);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
 
@@ -259,6 +315,10 @@ public class DatabaseDriver {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Connection getConn() {
+        return this.conn;
     }
 }
 

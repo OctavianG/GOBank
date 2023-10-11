@@ -1,5 +1,6 @@
 package bank.gobank.Models;
 
+import bank.gobank.Controllers.Client.AccountsController;
 import bank.gobank.Views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +15,7 @@ public class Model {
     private static Model model;
     private final ViewFactory viewFactory;
     private final DatabaseDriver databaseDriver;
+    private final AccountsController accountsController;
 
     // Client Data Section
     private final Client client;
@@ -30,6 +32,7 @@ public class Model {
 
         this.viewFactory = new ViewFactory();
         this.databaseDriver = new DatabaseDriver();
+        this.accountsController = new AccountsController();
 
         // Client Data Section
         this.clientLoginSuccessFlag = false;
@@ -56,6 +59,11 @@ public class Model {
     public DatabaseDriver getDatabaseDriver() {
 
         return databaseDriver;
+    }
+
+    public AccountsController getAccountsController() {
+
+        return this.accountsController;
     }
 
     /*
@@ -112,8 +120,12 @@ public class Model {
                 String[] dateParts = resultSet.getString("Date").split("-");
                 LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
                 String message = resultSet.getString("Message");
-                Transaction transaction = new Transaction(sender, receiver, amount, date, message);
-                transactionList.add(transaction); // Add to the temporary list
+                // if the account is less than the amount to send
+                if (Model.getInstance().getSavingsAccount(this.client.pAddressProperty().get()).balanceProperty().getValue() >= amount ) {
+                    Transaction transaction = new Transaction(sender, receiver, amount, date, message);
+                    transactionList.add(transaction); // Add to the temporary list
+                }
+
             }
 
             // latest transactions
@@ -263,7 +275,5 @@ public class Model {
 
         return account;
     }
-
-
 }
 
