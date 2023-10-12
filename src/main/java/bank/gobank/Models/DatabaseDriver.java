@@ -166,13 +166,51 @@ public class DatabaseDriver {
         }
     }
 
+    public void updateClientFirstName(String pAddress, String firstName) {
+        Statement statement;
+        try  {
+            statement = this.conn.createStatement();
+            statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
+            statement.executeUpdate("UPDATE Clients SET FirstName='"+firstName+"' WHERE PayeeAddress='"+pAddress+"';");
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateClientLastName(String pAddress, String lastName) {
+        Statement statement;
+        try  {
+            statement = this.conn.createStatement();
+            statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
+            statement.executeUpdate("UPDATE Clients SET LastName='"+lastName+"' WHERE PayeeAddress='"+pAddress+"';");
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateClientPassword(String pAddress, String newPassword) {
         Statement statement;
-        ResultSet resultSet;
         try  {
             statement = this.conn.createStatement();
             statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
             statement.executeUpdate("UPDATE Clients SET Password="+newPassword+" WHERE PayeeAddress='"+pAddress+"';");
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePAddress(String pAddress, String newPAddress) {
+        Statement statement;
+        try  {
+            statement = this.conn.createStatement();
+            statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
+            statement.executeUpdate("UPDATE Clients SET PayeeAddress='"+newPAddress+"' WHERE PayeeAddress='"+pAddress+"';");
 
 
         } catch (SQLException e) {
@@ -354,5 +392,7 @@ public class DatabaseDriver {
     public Connection getConn() {
         return this.conn;
     }
+
+
 }
 

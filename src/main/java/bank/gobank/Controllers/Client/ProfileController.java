@@ -30,7 +30,6 @@ public class ProfileController implements Initializable {
     public Label sv_acc_balance;
     public TextField change_firstName_txt;
     public TextField change_lastName_txt;
-    public TextField change_pAddress_txt;
     public TextField change_password_txt;
     public Button makeChanges_btn;
 
@@ -50,6 +49,7 @@ public class ProfileController implements Initializable {
         SavingsAccount savingsAccount = Model.getInstance().getSavingsAccount(pAddress);
 
         // Personal Information
+        //firstName_lbl.textProperty().bind(client.firstNameProperty());
         firstName_lbl.textProperty().bind(client.firstNameProperty());
         lastName_lbl.textProperty().bind(client.lastNameProperty());
         pAddress_lbl.textProperty().bind(client.pAddressProperty());
@@ -75,21 +75,41 @@ public class ProfileController implements Initializable {
     public void handleMakeChangesButton() {
         String newFirstName = change_firstName_txt.getText();
         String newLastName = change_lastName_txt.getText();
-        String newPAddress = change_pAddress_txt.getText();
         String newPassword = change_password_txt.getText();
 
-        // Update the password in the database
-        Model.getInstance().getDatabaseDriver().updateClientPassword(Model.getInstance().getClient().pAddressProperty().get(), newPassword);
+        String pAddress = Model.getInstance().getClient().pAddressProperty().get();
+        Client client = Model.getInstance().getClient();
+
+        if (!newFirstName.isEmpty()) {
+            // Update the firstName in the database
+            Model.getInstance().getDatabaseDriver().updateClientFirstName(Model.getInstance().getClient().
+                    pAddressProperty().get(), newFirstName);
+            firstName_lbl.textProperty().unbind();
+            firstName_lbl.setText(newFirstName);
+        }
+
+        if (!newLastName.isEmpty()) {
+            // Update the lastName in the database
+            Model.getInstance().getDatabaseDriver().updateClientLastName(Model.getInstance().getClient()
+                    .pAddressProperty().get(), newLastName);
+            lastName_lbl.textProperty().unbind();
+            lastName_lbl.setText(newLastName);
+        }
+
+
+        if (!newPassword.isEmpty()) {
+            // Update the password in the database
+            Model.getInstance().getDatabaseDriver().updateClientPassword(Model.getInstance().getClient()
+                    .pAddressProperty().get(), newPassword);
+            String password = Model.getInstance().getDatabaseDriver().getClientPassword(pAddress);
+            password_lbl.setText(password);
+        }
 
         // Clear the text fields
         change_firstName_txt.clear();
         change_lastName_txt.clear();
-        change_pAddress_txt.clear();
         change_password_txt.clear();
-
-        bindProfileData();
     }
-
 }
 
 

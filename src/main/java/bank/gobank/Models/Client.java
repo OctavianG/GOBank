@@ -37,9 +37,27 @@ public class Client {
         return this.lastName;
     }
 
+
     public StringProperty pAddressProperty() {
 
         return this.payeeAddress;
+    }
+
+    public String getFirstName() {
+        return firstName.get();
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
+
+
+    public String getLastName() {
+        return lastName.get();
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
     }
 
     public ObjectProperty<Account> checkingAccountProperty() {

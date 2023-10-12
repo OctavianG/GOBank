@@ -31,17 +31,15 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account Balance" />
       <Label fx:id="sv_acc_balance" text="Label" />
    </VBox>
-   <VBox layoutX="14.0" layoutY="375.0" prefHeight="328.0" prefWidth="406.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="430.0">
+   <VBox layoutX="14.0" layoutY="411.0" prefHeight="282.0" prefWidth="406.0" AnchorPane.bottomAnchor="56.60000000000002" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="430.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change First Name" />
       <TextField fx:id="change_firstName_txt" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="217.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change Last Name" />
       <TextField fx:id="change_lastName_txt" layoutX="21.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="217.0" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change Payee Address" />
-      <TextField fx:id="change_pAddress_txt" layoutX="21.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="217.0" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password" />
       <TextField fx:id="change_password_txt" layoutX="21.0" layoutY="124.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="217.0" />
    </VBox>
    <Text layoutX="430.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accounts Information" />
    <FontAwesomeIconView glyphName="CHILD" layoutX="633.0" layoutY="617.0" size="200" />
-   <Button fx:id="makeChanges_btn"  layoutX="310.0" layoutY="528.0" mnemonicParsing="false" text="Make Changes" />
+   <Button fx:id="makeChanges_btn" layoutX="345.0" layoutY="528.0" mnemonicParsing="false" text="Make Changes" />
 </AnchorPane>
