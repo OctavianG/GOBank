@@ -80,7 +80,8 @@ public class CreateClientController implements Initializable {
     }
 
     private void createAccount(String accountType) {
-        double balance = Double.parseDouble(ch_amount_fld.getText());
+        double balanceChecking = Double.parseDouble(ch_amount_fld.getText());
+        double balanceSavings = Double.parseDouble(sv_amount_fld.getText());
         // Generate Account Number
         String firstSection = "3201";
         String lastSection = Integer.toString((new Random()).nextInt(9999) + 1000);
@@ -88,10 +89,10 @@ public class CreateClientController implements Initializable {
         // Create the checking account / savings account
         if (accountType.equals("Checking")) {
             Model.getInstance().getDatabaseDriver().createCheckingAccount(payeeAddress, accountNumber,
-                    10, balance);
+                    10, balanceChecking);
         } else {
             Model.getInstance().getDatabaseDriver().createSavingsAccount(payeeAddress, accountNumber,
-                    2000, balance);
+                    2000, balanceSavings);
         }
     }
 

@@ -8,9 +8,9 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 public class Client {
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty payeeAddress;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private StringProperty payeeAddress;
     private final ObjectProperty<Account> checkingAccount;
     private final ObjectProperty<Account> savingsAccount;
     private final ObjectProperty<LocalDate> dateCreated;

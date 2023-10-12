@@ -5,6 +5,7 @@ import bank.gobank.Views.ViewFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -83,6 +84,8 @@ public class Model {
         return this.client;
     }
 
+
+
     public void evaluateClientCred(String pAddress, String password) {
         CheckingAccount checkingAccount;
         SavingsAccount savingsAccount;
@@ -144,7 +147,10 @@ public class Model {
 
     public void setLatestTransactions() {
 
-        prepareTransactions(this.latestTransactions, 5);
+
+
+            prepareTransactions(this.latestTransactions, 4);
+
     }
 
     public void removeTransactions() {

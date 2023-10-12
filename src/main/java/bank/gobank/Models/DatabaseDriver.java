@@ -36,6 +36,23 @@ public class DatabaseDriver {
         return resultSet;
     }
 
+    public String getClientPassword(String pAddress) {
+        Statement statement;
+        ResultSet resultSet;
+        String pass = "";
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT Password FROM CLIENTS WHERE PAYEEADDRESS='"+pAddress+"';");
+            if (resultSet.next()) {
+                pass = resultSet.getString("Password");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pass;
+    }
+
     public ResultSet getTransactions(String pAddress, int limit) {
         Statement statement;
         ResultSet resultSet = null;
@@ -149,6 +166,22 @@ public class DatabaseDriver {
         }
     }
 
+    public void updateClientPassword(String pAddress, String newPassword) {
+        Statement statement;
+        ResultSet resultSet;
+        try  {
+            statement = this.conn.createStatement();
+            statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='"+pAddress+"';");
+            statement.executeUpdate("UPDATE Clients SET Password="+newPassword+" WHERE PayeeAddress='"+pAddress+"';");
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 
     /*
@@ -182,6 +215,7 @@ public class DatabaseDriver {
             e.printStackTrace();
         }
     }
+
 
     public void createCheckingAccount(String owner, String number, double tLimit, double balance) {
         Statement statement;

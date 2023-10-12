@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -54,6 +55,8 @@ public class DashboardController implements Initializable {
         }
     }
 
+
+
     private void onSendMoney() {
         String receiver = payee_fld.getText();
         double amount = Double.parseDouble(amount_fld.getText());
@@ -82,6 +85,8 @@ public class DashboardController implements Initializable {
         payee_fld.setText("");
         amount_fld.setText("");
         message_fld.setText("");
+
+        accountSummary();
     }
 
     //  Method calculates all expenses and income
