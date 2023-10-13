@@ -1,6 +1,8 @@
 package bank.gobank.Controllers.Client;
 
+import bank.gobank.Models.CheckingAccount;
 import bank.gobank.Models.Model;
+import bank.gobank.Models.SavingsAccount;
 import bank.gobank.Views.ClientMenuOptions;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,6 +18,8 @@ public class ClientMenuController implements Initializable {
     public Button profile_btn;
     public Button logout_btn;
     public Button report_btn;
+    public CheckingAccount checkingAccount;
+    public SavingsAccount savingsAccount;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,14 +44,12 @@ public class ClientMenuController implements Initializable {
 
     private void onAccounts() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set(ClientMenuOptions.ACCOUNTS);
-        ProfileController.getInstance().bindProfileData();
-
     }
 
     private void onProfile() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set(ClientMenuOptions.PROFILE);
+        
     }
-
 
 
     private void onLogout() {

@@ -39,7 +39,7 @@
          <FontAwesomeIconView fill="WHITE" glyphName="ARROW_DOWN" size="20" />
       </graphic>
    </Button>
-   <Text layoutX="467.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move founds to savings account" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="364.0" />
+   <Text layoutX="467.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move founds to checking account" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="364.0" />
    <TextField fx:id="amount_to_ch" layoutX="468.0" layoutY="404.0" prefHeight="26.0" prefWidth="217.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="392.0" />
    <Button fx:id="trans_to_cv_btn" layoutX="468.0" layoutY="431.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="218.0" text="Transfer" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="441.0">
       <graphic>

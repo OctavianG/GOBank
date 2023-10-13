@@ -71,6 +71,10 @@ public class AccountsController implements Initializable {
 
                 bindAccountData();
 
+                // Update the balances directly through their properties
+                checkingAccount.balanceProperty().set(newBalanceChecking);
+                savingsAccount.balanceProperty().set(newBalanceSavings);
+
                 // Display a success message
                 error_lbl.setStyle("-fx-text-fill: blue; -fx-font-size: 1.3em; -fx-font-weight: bold");
                 error_lbl.setText("Transferring " + amount + " $ to Savings Account");
@@ -109,6 +113,10 @@ public class AccountsController implements Initializable {
                 Model.getInstance().getDatabaseDriver().updateBalanceSavings(pAddress, amount, "SUB");
 
                 bindAccountData();
+
+                // Update the balances directly through their properties
+                checkingAccount.balanceProperty().set(newBalanceChecking);
+                savingsAccount.balanceProperty().set(newBalanceSavings);
 
                 // Display a success message
                 error_lbl.setStyle("-fx-text-fill: blue; -fx-font-size: 1.3em; -fx-font-weight: bold");

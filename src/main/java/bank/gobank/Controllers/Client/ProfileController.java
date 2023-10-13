@@ -19,16 +19,27 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
+    @FXML
     private static ProfileController profileController;
+    @FXML
     public Label firstName_lbl;
+    @FXML
     public Label lastName_lbl;
+    @FXML
     public Label pAddress_lbl;
+    @FXML
     public Label password_lbl;
+    @FXML
     public Label ch_acc_num;
+    @FXML
     public Label ch_acc_balance;
+    @FXML
     public Label sv_acc_num;
+    @FXML
     public Label sv_acc_balance;
+    @FXML
     public TextField change_firstName_txt;
+
     public TextField change_lastName_txt;
     public TextField change_password_txt;
     public Button makeChanges_btn;
@@ -43,24 +54,22 @@ public class ProfileController implements Initializable {
     }
 
     public void bindProfileData() {
-        Client client = Model.getInstance().getClient();
-        String pAddress = Model.getInstance().getClient().pAddressProperty().get();
+        String pAddress = Model.getInstance().getClient().pAddressProperty().getValue();
         CheckingAccount checkingAccount = Model.getInstance().getCheckingAccount(pAddress);
         SavingsAccount savingsAccount = Model.getInstance().getSavingsAccount(pAddress);
 
         // Personal Information
-        //firstName_lbl.textProperty().bind(client.firstNameProperty());
-        firstName_lbl.textProperty().bind(client.firstNameProperty());
-        lastName_lbl.textProperty().bind(client.lastNameProperty());
-        pAddress_lbl.textProperty().bind(client.pAddressProperty());
+        firstName_lbl.textProperty().bind(Model.getInstance().getClient().firstNameProperty());
+        lastName_lbl.textProperty().bind(Model.getInstance().getClient().lastNameProperty());
+        pAddress_lbl.textProperty().bind(Model.getInstance().getClient().pAddressProperty());
         String password = Model.getInstance().getDatabaseDriver().getClientPassword(pAddress);
         password_lbl.setText(password);
 
         // Accounts Information
-        ch_acc_num.textProperty().bind(client.checkingAccountProperty().asString());
-        ch_acc_balance.textProperty().bind(checkingAccount.balanceProperty().asString());
-        sv_acc_num.textProperty().bind(client.savingsAccountProperty().asString());
-        sv_acc_balance.textProperty().bind(savingsAccount.balanceProperty().asString());
+        ch_acc_num.textProperty().bind(Model.getInstance().getClient().checkingAccountProperty().asString());
+        ch_acc_balance.textProperty().bind(Model.getInstance().getCheckingAccount(pAddress).balanceProperty().asString());
+        sv_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().asString());
+        sv_acc_balance.textProperty().bind(Model.getInstance().getSavingsAccount(pAddress).balanceProperty().asString());
     }
 
     public static synchronized ProfileController getInstance() {

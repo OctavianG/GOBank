@@ -134,6 +134,11 @@ public class Model {
             // latest transactions
             if (limit != -1) {
                 Collections.reverse(transactionList);
+
+                if (limit > transactionList.size()) {
+                    limit = transactionList.size();
+                }
+
                 transactions.addAll(transactionList.subList(0, limit));
                 // all transactions
             } else {
