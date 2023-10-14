@@ -88,8 +88,5 @@ Follow these steps to get started with GoBank:
 2. Open the project in your Java IDE.
 3. Use Maven to build and run the application.
 
-## Feedback and Contributions
-We welcome feedback and contributions to enhance this project. Please feel free to submit issues or contribute to make GoBank even better.
-
 ## License
 This project is licensed under the MIT License.
