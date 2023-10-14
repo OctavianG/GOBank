@@ -39,7 +39,6 @@ public class ProfileController implements Initializable {
     public Label sv_acc_balance;
     @FXML
     public TextField change_firstName_txt;
-
     public TextField change_lastName_txt;
     public TextField change_password_txt;
     public Button makeChanges_btn;
@@ -48,15 +47,13 @@ public class ProfileController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        bindProfileData();
         makeChanges_btn.setOnAction(event -> handleMakeChangesButton());
-
+        bindProfileData();
     }
+
 
     public void bindProfileData() {
         String pAddress = Model.getInstance().getClient().pAddressProperty().getValue();
-        CheckingAccount checkingAccount = Model.getInstance().getCheckingAccount(pAddress);
-        SavingsAccount savingsAccount = Model.getInstance().getSavingsAccount(pAddress);
 
         // Personal Information
         firstName_lbl.textProperty().bind(Model.getInstance().getClient().firstNameProperty());
@@ -70,6 +67,8 @@ public class ProfileController implements Initializable {
         ch_acc_balance.textProperty().bind(Model.getInstance().getCheckingAccount(pAddress).balanceProperty().asString());
         sv_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().asString());
         sv_acc_balance.textProperty().bind(Model.getInstance().getSavingsAccount(pAddress).balanceProperty().asString());
+        
+
     }
 
     public static synchronized ProfileController getInstance() {
@@ -118,6 +117,10 @@ public class ProfileController implements Initializable {
         change_firstName_txt.clear();
         change_lastName_txt.clear();
         change_password_txt.clear();
+
+        ch_acc_balance.textProperty().bind(Model.getInstance().getCheckingAccount(pAddress).balanceProperty().asString());
+        sv_acc_balance.textProperty().bind(Model.getInstance().getSavingsAccount(pAddress).balanceProperty().asString());
+
     }
 }
 

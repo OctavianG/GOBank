@@ -114,9 +114,9 @@ public class AccountsController implements Initializable {
 
                 bindAccountData();
 
-                // Update the balances directly through their properties
-                checkingAccount.balanceProperty().set(newBalanceChecking);
-                savingsAccount.balanceProperty().set(newBalanceSavings);
+                // Update the balance properties directly
+                checkingAccount.setBalance(newBalanceChecking);
+                savingsAccount.setBalance(newBalanceSavings);
 
                 // Display a success message
                 error_lbl.setStyle("-fx-text-fill: blue; -fx-font-size: 1.3em; -fx-font-weight: bold");
