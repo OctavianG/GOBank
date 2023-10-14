@@ -48,7 +48,6 @@ public class ClientMenuController implements Initializable {
 
     private void onProfile() {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set(ClientMenuOptions.PROFILE);
-
     }
 
 

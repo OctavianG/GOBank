@@ -2,11 +2,10 @@ package bank.gobank.Controllers.Admin;
 
 import bank.gobank.Models.Client;
 import bank.gobank.Models.Model;
-import bank.gobank.Views.ClientCellFactory;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,4 +41,3 @@ public class ClientCellController implements Initializable {
         Model.getInstance().setClients();
         }
     }
-

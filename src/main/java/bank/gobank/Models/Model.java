@@ -68,7 +68,9 @@ public class Model {
     }
 
     /*
+
     Client Method Section
+
     */
 
     public boolean getClientLoginSuccessFlag() {
@@ -83,8 +85,6 @@ public class Model {
 
         return this.client;
     }
-
-
 
     public void evaluateClientCred(String pAddress, String password) {
         CheckingAccount checkingAccount;
@@ -128,7 +128,6 @@ public class Model {
                     Transaction transaction = new Transaction(sender, receiver, amount, date, message);
                     transactionList.add(transaction); // Add to the temporary list
                 }
-
             }
 
             // latest transactions
@@ -151,11 +150,7 @@ public class Model {
 
 
     public void setLatestTransactions() {
-
-
-
             prepareTransactions(this.latestTransactions, 4);
-
     }
 
     public void removeTransactions() {
@@ -249,10 +244,10 @@ public class Model {
         return searchResults;
     }
 
-
-
     /*
+
      Utility Methods
+
      */
 
     public CheckingAccount getCheckingAccount(String pAddress) {

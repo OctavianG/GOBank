@@ -1,14 +1,9 @@
 package bank.gobank.Controllers.Client;
 
-import bank.gobank.Models.CheckingAccount;
+
 import bank.gobank.Models.Client;
 import bank.gobank.Models.Model;
-import bank.gobank.Models.SavingsAccount;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -51,7 +46,6 @@ public class ProfileController implements Initializable {
         bindProfileData();
     }
 
-
     public void bindProfileData() {
         String pAddress = Model.getInstance().getClient().pAddressProperty().getValue();
 
@@ -67,8 +61,6 @@ public class ProfileController implements Initializable {
         ch_acc_balance.textProperty().bind(Model.getInstance().getCheckingAccount(pAddress).balanceProperty().asString());
         sv_acc_num.textProperty().bind(Model.getInstance().getClient().savingsAccountProperty().asString());
         sv_acc_balance.textProperty().bind(Model.getInstance().getSavingsAccount(pAddress).balanceProperty().asString());
-        
-
     }
 
     public static synchronized ProfileController getInstance() {
@@ -120,7 +112,6 @@ public class ProfileController implements Initializable {
 
         ch_acc_balance.textProperty().bind(Model.getInstance().getCheckingAccount(pAddress).balanceProperty().asString());
         sv_acc_balance.textProperty().bind(Model.getInstance().getSavingsAccount(pAddress).balanceProperty().asString());
-
     }
 }
 

@@ -20,7 +20,6 @@ public class DepositController implements Initializable {
     public TextField amount_fld;
     public Button deposit_btn;
     public Label message_lbl;
-
     private Client client;
 
     @Override
@@ -51,5 +50,4 @@ public class DepositController implements Initializable {
         pAddress_fld.setText("");
         amount_fld.setText("");
     }
-
 }

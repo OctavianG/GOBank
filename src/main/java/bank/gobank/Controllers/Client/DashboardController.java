@@ -4,13 +4,12 @@ import bank.gobank.Models.Model;
 import bank.gobank.Models.Transaction;
 import bank.gobank.Views.TransactionCellFactory;
 import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -54,8 +53,6 @@ public class DashboardController implements Initializable {
             Model.getInstance().setLatestTransactions();
         }
     }
-
-
 
     private void onSendMoney() {
         String receiver = payee_fld.getText();

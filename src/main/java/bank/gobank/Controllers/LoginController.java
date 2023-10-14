@@ -1,6 +1,5 @@
 package bank.gobank.Controllers;
 
-import bank.gobank.Models.Account;
 import bank.gobank.Models.Model;
 import bank.gobank.Views.AccountType;
 import javafx.collections.FXCollections;

@@ -51,7 +51,6 @@ public class Client {
         this.firstName.set(firstName);
     }
 
-
     public String getLastName() {
         return lastName.get();
     }

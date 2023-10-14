@@ -182,7 +182,6 @@ public class ViewFactory {
         stage.show();
     }
 
-
     private void createStage (FXMLLoader loader){
         Scene scene = null;
 
@@ -202,6 +201,5 @@ public class ViewFactory {
 
     public void closeStage (Stage stage){
         stage.close();
-
     }
 }

@@ -44,6 +44,4 @@ public class TransactionCellController implements Initializable {
             out_icon.setFill(Color.rgb(225, 225, 225));
         }
     }
-
-
 }

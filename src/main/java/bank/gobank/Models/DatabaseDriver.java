@@ -1,6 +1,6 @@
 package bank.gobank.Models;
 
-import javafx.collections.FXCollections;
+
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -81,9 +81,6 @@ public class DatabaseDriver {
 
         return balance;
     }
-
-
-
 
     // Method to add or subtract from Balance
     public void updateBalance(String pAddress, double amount, String operation) {
@@ -218,14 +215,9 @@ public class DatabaseDriver {
         }
     }
 
-
-
-
-
     /*
 
     Admin Section
-
 
      */
 
@@ -316,10 +308,6 @@ public class DatabaseDriver {
         }
     }
 
-
-
-
-
     /* Utility Methods */
 
     public ResultSet searchClient(String pAddress) {
@@ -392,7 +380,5 @@ public class DatabaseDriver {
     public Connection getConn() {
         return this.conn;
     }
-
-
 }
 

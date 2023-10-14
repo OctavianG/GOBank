@@ -1,7 +1,6 @@
 package bank.gobank.Views;
 
 import bank.gobank.Controllers.Admin.ClientCellController;
-import bank.gobank.Controllers.Client.ClientController;
 import bank.gobank.Models.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;

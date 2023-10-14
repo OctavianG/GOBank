@@ -1,19 +1,11 @@
 package bank.gobank.Controllers.Client;
 
 import bank.gobank.Models.*;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.DepthTest;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class AccountsController implements Initializable {
