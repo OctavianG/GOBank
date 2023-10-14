@@ -62,6 +62,8 @@ Both clients and administrators have access to a logout button, providing a conv
 
 ### Login
 Users must enter valid login credentials to access the application.
+You can login as an admin with username Admin and password 123456.
+You can check gobank.db for other clients payee address and passwords
 
 ### Client Features
 - Navigate through the dashboard to view account details.
